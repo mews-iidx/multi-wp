@@ -1,0 +1,41 @@
+version: "3.5"
+
+services:
+  wordpress:
+    container_name: ${WP_CONTAINER_NAME}
+    links:
+      - wordpress-db
+
+    restart: always
+    build: .
+    environment:
+      WORDPRESS_DB_HOST: wordpress-db:3306
+      WORDPRESS_DB_NAME: ${WP_DBNAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      VIRTUAL_HOST: ${DOMAIN}
+    volumes:
+      - wp-content:/var/www/html/
+
+  wordpress-db:
+    image: mysql:5.7
+    container_name: ${DB_CONTAINER_NAME}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: database_password
+      MYSQL_DATABASE: ${WP_DBNAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql-db:/var/lib/mysql
+
+volumes:
+  mysql-db:
+    driver: local
+  wp-content:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: ${NETWORK_NAME}
