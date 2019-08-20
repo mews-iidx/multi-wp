@@ -7,6 +7,8 @@ nginx reverse proxy and multiple workdpress.
 | -----------   | -----------  |
 | hoge.com      | A record     |
 | fuga.hoge.com | CNAME record |
+
+
 fix your domain.
 
 # clone repository
