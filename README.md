@@ -11,7 +11,7 @@ fix your domain.
 
 # clone repository
 ```sh
-git clone https://mews-iidx/multi-wp
+git clone https://github.com/mews-iidx/multi-wp
 ```
 
 # Get Let's Encrypt CERT
